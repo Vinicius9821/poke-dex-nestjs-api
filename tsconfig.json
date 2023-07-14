@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "lib": [
+      "ES7"
+    ],
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "rootDir": "./",
+    "outDir": ".build",
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strictNullChecks": true
+  }
+}

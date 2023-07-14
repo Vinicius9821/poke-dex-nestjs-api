@@ -1,0 +1,1 @@
+export AWS_PROFILE="dev" && NODE_TLS_REJECT_UNAUTHORIZED=0 && yarn start
