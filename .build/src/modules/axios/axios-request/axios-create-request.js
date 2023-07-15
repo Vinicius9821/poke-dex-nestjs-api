@@ -38,7 +38,7 @@ let AxiosCreateRequest = exports.AxiosCreateRequest = class AxiosCreateRequest {
             return apiReturn === null || apiReturn === void 0 ? void 0 : apiReturn.return;
         }
         else {
-            throw new axios_exception_model_1.AxiosException('', 0)
+            throw new axios_exception_model_1.AxiosException()
                 .withMessage(apiReturn === null || apiReturn === void 0 ? void 0 : apiReturn.error)
                 .withErrorCode(apiReturn === null || apiReturn === void 0 ? void 0 : apiReturn.errorCode)
                 .withData(apiReturn.return);

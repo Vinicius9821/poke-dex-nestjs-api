@@ -37,7 +37,7 @@ export class AxiosCreateRequest {
     if (apiReturn?.success) {
       return apiReturn?.return;
     } else {
-      throw new AxiosException('', 0)
+      throw new AxiosException()
         .withMessage(apiReturn?.error)
         .withErrorCode(apiReturn?.errorCode)
         .withData(apiReturn.return);

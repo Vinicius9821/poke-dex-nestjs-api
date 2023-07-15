@@ -15,7 +15,7 @@ export class PokeDexApiIntegrator {
     console.log(pokemon);
     const axios = new AxiosBuildClient()
       .withBaseUrl(this.pokeDexApiBaseUrl)
-      .withPath(`/pokemon/${pokemon}`)
+      .withPath(`pokemon/${pokemon}`)
       .withMethod(HtppMethod.GET)
       .buildReturn()
       .buildAxios();
@@ -25,7 +25,6 @@ export class PokeDexApiIntegrator {
     const apiReturn = await this.axiosCreateRequest.makeRequest<PokemonModel>(
       axios,
     );
-    console.log(apiReturn);
 
     return AxiosGetResponse.returnOrError(apiReturn);
   }

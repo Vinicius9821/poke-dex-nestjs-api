@@ -10,24 +10,29 @@ export type ResponseDetails = {
 export class AxiosException extends HttpException {
   private static logger = new Logger();
 
-  private statusCode?: HttpStatus;
+  private statusCode: HttpStatus;
   private errorCode?: string | null;
   private traceId?: string | null;
-  private responseDetails: ResponseDetails;
+  private responseDetails: ResponseDetails = {
+    headers: {},
+  };
   private data: any;
 
   /**
    *
    */
-  constructor(message: string, status: number) {
-    super(message, status);
+  constructor(message?: string, statusCode?: HttpStatus) {
+    if (message === undefined) {
+      message = '';
+    }
+    super(message, statusCode);
   }
 
   public static ofValidation(
     errorCode: string,
     errorMessage: string,
   ): AxiosException {
-    return new AxiosException('', 0)
+    return new AxiosException()
       .withErrorCode(errorCode)
       .withMessage(errorMessage)
       .withHttpStatus(HttpStatus.BAD_REQUEST);
@@ -37,7 +42,7 @@ export class AxiosException extends HttpException {
     errorCode: string,
     errorMessage: string,
   ): AxiosException {
-    return new AxiosException('', 0)
+    return new AxiosException()
       .withErrorCode(errorCode)
       .withMessage(errorMessage)
       .withHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -54,7 +59,7 @@ export class AxiosException extends HttpException {
   }
 
   private static logError(model: any) {
-    throw new Error('Method not implemented.');
+    AxiosException.logger.error(model);
   }
 
   withErrorCode(errorCode?: string): AxiosException {
@@ -77,10 +82,10 @@ export class AxiosException extends HttpException {
     return this;
   }
 
-  // withResponse(responseDetails?: ResponseDetails): AxiosException {
-  //     this.responseDetails = responseDetails;
-  //     return this;
-  // }
+  withResponse(responseDetails: ResponseDetails): AxiosException {
+    this.responseDetails = responseDetails;
+    return this;
+  }
 
   withData(data?: any): AxiosException {
     this.data = data;
@@ -91,9 +96,9 @@ export class AxiosException extends HttpException {
     return this.errorCode;
   }
 
-  // getStatus() {
-  //     return this.statusCode;
-  // }
+  getStatus() {
+    return this.statusCode;
+  }
 
   getTraceId() {
     return this.traceId;

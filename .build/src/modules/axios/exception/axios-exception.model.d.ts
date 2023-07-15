@@ -12,7 +12,7 @@ export declare class AxiosException extends HttpException {
     private traceId?;
     private responseDetails;
     private data;
-    constructor(message: string, status: number);
+    constructor(message?: string, statusCode?: HttpStatus);
     static ofValidation(errorCode: string, errorMessage: string): AxiosException;
     static ofError(errorCode: string, errorMessage: string): AxiosException;
     static ofServiceResultModel(model: any): AxiosException;

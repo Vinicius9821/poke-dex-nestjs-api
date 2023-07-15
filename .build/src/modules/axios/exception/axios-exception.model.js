@@ -3,17 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AxiosException = void 0;
 const common_1 = require("@nestjs/common");
 class AxiosException extends common_1.HttpException {
-    constructor(message, status) {
-        super(message, status);
+    constructor(message, statusCode) {
+        super(message, statusCode);
     }
     static ofValidation(errorCode, errorMessage) {
-        return new AxiosException('', 0)
+        return new AxiosException()
             .withErrorCode(errorCode)
             .withMessage(errorMessage)
             .withHttpStatus(common_1.HttpStatus.BAD_REQUEST);
     }
     static ofError(errorCode, errorMessage) {
-        return new AxiosException('', 0)
+        return new AxiosException()
             .withErrorCode(errorCode)
             .withMessage(errorMessage)
             .withHttpStatus(common_1.HttpStatus.INTERNAL_SERVER_ERROR);
@@ -28,7 +28,7 @@ class AxiosException extends common_1.HttpException {
         }
     }
     static logError(model) {
-        throw new Error('Method not implemented.');
+        AxiosException.logger.error(model);
     }
     withErrorCode(errorCode) {
         this.errorCode = errorCode;

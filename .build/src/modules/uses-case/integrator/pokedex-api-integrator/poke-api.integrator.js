@@ -24,13 +24,12 @@ let PokeDexApiIntegrator = exports.PokeDexApiIntegrator = class PokeDexApiIntegr
         console.log(pokemon);
         const axios = new axios_build_client_1.AxiosBuildClient()
             .withBaseUrl(this.pokeDexApiBaseUrl)
-            .withPath(`/pokemon/${pokemon}`)
+            .withPath(`pokemon/${pokemon}`)
             .withMethod(http_method_enum_1.HtppMethod.GET)
             .buildReturn()
             .buildAxios();
         console.log(axios);
         const apiReturn = await this.axiosCreateRequest.makeRequest(axios);
-        console.log(apiReturn);
         return axios_get_response_model_1.AxiosGetResponse.returnOrError(apiReturn);
     }
 };

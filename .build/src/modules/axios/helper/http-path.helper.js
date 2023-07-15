@@ -26,7 +26,7 @@ class HttpPathHelper {
     }
     static checkCurrentValueFromPath(currentValue) {
         if (this.checkCurrentValueFromPathIsNullOrEmpty(currentValue)) {
-            throw new axios_exception_model_1.AxiosException('', 0).withMessage('current value cannot be null or empty');
+            throw new axios_exception_model_1.AxiosException().withMessage('current value cannot be null or empty');
         }
     }
     static checkCurrentValueFromPathIsNullOrEmpty(currentValue) {

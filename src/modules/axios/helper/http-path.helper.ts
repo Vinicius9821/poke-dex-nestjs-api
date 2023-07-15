@@ -29,7 +29,7 @@ export class HttpPathHelper {
 
   private static checkCurrentValueFromPath(currentValue?: string): void {
     if (this.checkCurrentValueFromPathIsNullOrEmpty(currentValue)) {
-      throw new AxiosException('', 0).withMessage(
+      throw new AxiosException().withMessage(
         'current value cannot be null or empty',
       );
     }
