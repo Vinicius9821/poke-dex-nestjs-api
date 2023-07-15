@@ -1,5 +1,5 @@
-import { AxiosAdapter, AxiosBasicCredentials, AxiosProxyConfig, AxiosRequestConfig, CancelToken, TransitionalOptions } from "axios";
-import { Method } from "./axios-config.model";
+import { AxiosAdapter, AxiosBasicCredentials, AxiosProxyConfig, AxiosRequestConfig, CancelToken, TransitionalOptions } from 'axios';
+import { Method } from './axios-config.model';
 export declare class RequestConfig implements AxiosRequestConfig {
     logRequest?: boolean;
     logResponse?: boolean;

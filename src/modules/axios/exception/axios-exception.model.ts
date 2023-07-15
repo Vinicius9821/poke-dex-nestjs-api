@@ -1,97 +1,109 @@
-import { HttpException, HttpStatus, Logger } from "@nestjs/common";
+import { HttpException, HttpStatus, Logger } from '@nestjs/common';
 
 export type ResponseDetails = {
-    status?: number;
-    statusMessage?: string;
-    headers: any;
-    data?: any;
-}
+  status?: number;
+  statusMessage?: string;
+  headers: any;
+  data?: any;
+};
 
 export class AxiosException extends HttpException {
-    private static logger = new Logger();
+  private static logger = new Logger();
 
-    private statusCode?: HttpStatus;
-    private errorCode?: string | null;
-    private traceId?: string | null;
-    private responseDetails: ResponseDetails;
-    private data: any;
+  private statusCode?: HttpStatus;
+  private errorCode?: string | null;
+  private traceId?: string | null;
+  private responseDetails: ResponseDetails;
+  private data: any;
 
-    /**
-     *
-     */
-    constructor(message: string, status: number) {
-        super(message, status);
+  /**
+   *
+   */
+  constructor(message: string, status: number) {
+    super(message, status);
+  }
+
+  public static ofValidation(
+    errorCode: string,
+    errorMessage: string,
+  ): AxiosException {
+    return new AxiosException('', 0)
+      .withErrorCode(errorCode)
+      .withMessage(errorMessage)
+      .withHttpStatus(HttpStatus.BAD_REQUEST);
+  }
+
+  public static ofError(
+    errorCode: string,
+    errorMessage: string,
+  ): AxiosException {
+    return new AxiosException('', 0)
+      .withErrorCode(errorCode)
+      .withMessage(errorMessage)
+      .withHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  public static ofServiceResultModel(model: any): AxiosException {
+    this.logError(model);
+
+    if (model.businessException) {
+      return this.ofValidation(model.errorCode, model.errorMessage);
+    } else {
+      return this.ofError(model.errorCode, model.errorMessage);
     }
+  }
 
-    public static ofValidation(errorCode: string, errorMessage: string): AxiosException {
-        return new AxiosException('', 0).withErrorCode(errorCode).withMessage(errorMessage).withHttpStatus(HttpStatus.BAD_REQUEST);
-    }
+  private static logError(model: any) {
+    throw new Error('Method not implemented.');
+  }
 
-    public static ofError(errorCode: string, errorMessage: string): AxiosException {
-        return new AxiosException('', 0).withErrorCode(errorCode).withMessage(errorMessage).withHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+  withErrorCode(errorCode?: string): AxiosException {
+    this.errorCode = errorCode;
+    return this;
+  }
 
-    public static ofServiceResultModel(model: any): AxiosException {
-        this.logError(model);
+  withMessage(message: string): AxiosException {
+    this.message = message;
+    return this;
+  }
 
-        if (model.businessException) {
-            return this.ofValidation(model.errorCode, model.errorMessage);
-        } else {
-            return this.ofError(model.errorCode, model.errorMessage);
-        }
-    }
-    
-    private static logError(model: any) {
-        throw new Error("Method not implemented.");
-    }
+  withHttpStatus(status?: HttpStatus): AxiosException {
+    this.statusCode = status ?? HttpStatus.INTERNAL_SERVER_ERROR;
+    return this;
+  }
 
-    withErrorCode(errorCode?: string): AxiosException {
-        this.errorCode = errorCode;
-        return this;
-    }
+  withTrace(traceId?: string): AxiosException {
+    this.traceId = traceId;
+    return this;
+  }
 
-    withMessage(message: string): AxiosException {
-        this.message = message;
-        return this;
-    }
+  // withResponse(responseDetails?: ResponseDetails): AxiosException {
+  //     this.responseDetails = responseDetails;
+  //     return this;
+  // }
 
-    withHttpStatus(status?: HttpStatus): AxiosException {
-        this.statusCode = status ?? HttpStatus.INTERNAL_SERVER_ERROR;
-        return this;
-    }
+  withData(data?: any): AxiosException {
+    this.data = data;
+    return this;
+  }
 
-    withTrace(traceId?: string): AxiosException {
-        this.traceId = traceId;
-        return this;
-    }
+  getErrorCode() {
+    return this.errorCode;
+  }
 
-    // withResponse(responseDetails?: ResponseDetails): AxiosException {
-    //     this.responseDetails = responseDetails;
-    //     return this;
-    // }
+  // getStatus() {
+  //     return this.statusCode;
+  // }
 
-    withData(data?: any): AxiosException {
-        this.data = data;
-        return this;
-    }
+  getTraceId() {
+    return this.traceId;
+  }
 
-    getErrorCode() {
-        return this.errorCode;
-    }
+  getResponseDetails() {
+    return this.responseDetails;
+  }
 
-    // getStatus() {
-    //     return this.statusCode;
-    // }
-
-    getTraceId() {
-        return this.traceId;
-    }
-
-    getResponseDetails() {
-        return this.responseDetails;
-    }
-
-    getData() {
-        return this.data;
-    }
+  getData() {
+    return this.data;
+  }
 }

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AxiosBuildClient = void 0;
-const http_method_enum_1 = require("../models/enum/http-method.enum");
+const http_method_enum_1 = require("./../../../modules/axios/models/enum/http-method.enum");
 const axios_config_1 = require("./axios.config");
 class AxiosBuildClient {
     constructor() {
@@ -62,12 +62,12 @@ class AxiosBuildClient {
     }
     checkBaseUrlIsNullOrEmpty() {
         if (!this.baseUrl) {
-            throw new Error("base url is null or empty");
+            throw new Error('base url is null or empty');
         }
     }
     checkHttpMethodIsNullOrEmpty() {
         if (!this.method) {
-            throw new Error("http method is null or empty");
+            throw new Error('http method is null or empty');
         }
     }
     buildAxiosRequestConfig() {

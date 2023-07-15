@@ -62,14 +62,14 @@ let AxiosCreateRequest = exports.AxiosCreateRequest = class AxiosCreateRequest {
             return: axiosResponse === null || axiosResponse === void 0 ? void 0 : axiosResponse.data,
             success: false,
             errorCode: (_a = axiosResponse === null || axiosResponse === void 0 ? void 0 : axiosResponse.status) === null || _a === void 0 ? void 0 : _a.toString(),
-            status: axiosResponse === null || axiosResponse === void 0 ? void 0 : axiosResponse.status
+            status: axiosResponse === null || axiosResponse === void 0 ? void 0 : axiosResponse.status,
         };
     }
     buildApiReturnWithSucessData(axiosResponse) {
         return {
             return: axiosResponse === null || axiosResponse === void 0 ? void 0 : axiosResponse.data,
             success: true,
-            status: axiosResponse === null || axiosResponse === void 0 ? void 0 : axiosResponse.status
+            status: axiosResponse === null || axiosResponse === void 0 ? void 0 : axiosResponse.status,
         };
     }
     applyResponseLog(axiosResponse) {

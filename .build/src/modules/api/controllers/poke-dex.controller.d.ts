@@ -1,5 +1,5 @@
-import { PokeDexService } from '../../app/services/poke-dex.service';
-import { PokemonModel } from 'src/modules/app/shared/models/pokemon.model';
+import { PokeDexService } from './../../../modules/uses-case/integrator/services/poke-dex.service';
+import { PokemonModel } from './../../../modules/uses-case/shared/models/pokemon.model';
 export declare class PokeDexController {
     private readonly pokeDexService;
     constructor(pokeDexService: PokeDexService);

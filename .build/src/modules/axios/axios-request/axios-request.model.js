@@ -11,11 +11,10 @@ class AxiosRequest {
         try {
             const axiosResponse = await this.executeRequest();
         }
-        catch (error) {
-        }
+        catch (error) { }
     }
     executeRequest() {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 }
 exports.AxiosRequest = AxiosRequest;

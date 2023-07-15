@@ -14,7 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PokeDexController = void 0;
 const common_1 = require("@nestjs/common");
-const poke_dex_service_1 = require("../../app/services/poke-dex.service");
+const poke_dex_service_1 = require("./../../../modules/uses-case/integrator/services/poke-dex.service");
 let PokeDexController = exports.PokeDexController = class PokeDexController {
     constructor(pokeDexService) {
         this.pokeDexService = pokeDexService;

@@ -1,6 +1,6 @@
-import { AxiosResponse } from "axios";
-import { RequestConfig } from "../models/axios-request.config.model";
-import { ApiReturn } from "src/modules/app/shared/models/api-return.model";
+import { AxiosResponse } from 'axios';
+import { RequestConfig } from '../models/axios-request.config.model';
+import { ApiReturn } from './../../../modules/uses-case/shared/models/api-return.model';
 export declare class AxiosCreateRequest {
     private readonly responseLogger;
     private readonly requestLogger;

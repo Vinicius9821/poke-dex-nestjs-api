@@ -7,10 +7,16 @@ class AxiosException extends common_1.HttpException {
         super(message, status);
     }
     static ofValidation(errorCode, errorMessage) {
-        return new AxiosException('', 0).withErrorCode(errorCode).withMessage(errorMessage).withHttpStatus(common_1.HttpStatus.BAD_REQUEST);
+        return new AxiosException('', 0)
+            .withErrorCode(errorCode)
+            .withMessage(errorMessage)
+            .withHttpStatus(common_1.HttpStatus.BAD_REQUEST);
     }
     static ofError(errorCode, errorMessage) {
-        return new AxiosException('', 0).withErrorCode(errorCode).withMessage(errorMessage).withHttpStatus(common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+        return new AxiosException('', 0)
+            .withErrorCode(errorCode)
+            .withMessage(errorMessage)
+            .withHttpStatus(common_1.HttpStatus.INTERNAL_SERVER_ERROR);
     }
     static ofServiceResultModel(model) {
         this.logError(model);
@@ -22,7 +28,7 @@ class AxiosException extends common_1.HttpException {
         }
     }
     static logError(model) {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
     withErrorCode(errorCode) {
         this.errorCode = errorCode;

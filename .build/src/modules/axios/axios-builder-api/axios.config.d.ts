@@ -1,5 +1,5 @@
-import { AxiosRequestConfig } from "axios";
-import { Method } from "../models/axios-config.model";
+import { AxiosRequestConfig } from 'axios';
+import { Method } from '../models/axios-config.model';
 export declare class AxiosConfig implements AxiosRequestConfig {
     baseUrl: string;
     method?: Method;

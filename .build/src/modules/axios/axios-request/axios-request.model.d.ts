@@ -1,4 +1,4 @@
-import { AxiosConfig } from "../axios-builder-api/axios.config";
+import { AxiosConfig } from '../axios-builder-api/axios.config';
 export declare class AxiosRequest {
     private readonly responseLogger;
     private readonly requestLogger;

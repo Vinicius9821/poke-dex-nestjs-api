@@ -1,5 +1,5 @@
-import { HtppMethod } from "src/modules/axios/models/enum/http-method.enum";
-import { AxiosConfig } from "./axios.config";
+import { HtppMethod } from './../../../modules/axios/models/enum/http-method.enum';
+import { AxiosConfig } from './axios.config';
 export declare class AxiosBuildClient {
     private baseUrl;
     private path;
