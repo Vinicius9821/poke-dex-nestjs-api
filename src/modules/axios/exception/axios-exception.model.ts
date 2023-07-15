@@ -25,6 +25,10 @@ export class AxiosException extends HttpException {
     if (message === undefined) {
       message = '';
     }
+
+    if (statusCode === undefined) {
+      statusCode = '';
+    }
     super(message, statusCode);
   }
 
