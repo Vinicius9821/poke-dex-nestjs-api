@@ -19,17 +19,26 @@ let PokeDexController = exports.PokeDexController = class PokeDexController {
     constructor(pokeDexService) {
         this.pokeDexService = pokeDexService;
     }
-    getHello(pokemon) {
+    getHelloWorld() {
+        return this.pokeDexService.getHelloWorld();
+    }
+    getPokemonByName(pokemon) {
         return this.pokeDexService.getPokemonByNameFromPokeApi(pokemon);
     }
 };
+__decorate([
+    (0, common_1.Get)('hello'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], PokeDexController.prototype, "getHelloWorld", null);
 __decorate([
     (0, common_1.Get)('pokemon/:pokemon'),
     __param(0, (0, common_1.Param)('pokemon')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], PokeDexController.prototype, "getHello", null);
+], PokeDexController.prototype, "getPokemonByName", null);
 exports.PokeDexController = PokeDexController = __decorate([
     (0, common_1.Controller)('/api'),
     __metadata("design:paramtypes", [poke_dex_service_1.PokeDexService])

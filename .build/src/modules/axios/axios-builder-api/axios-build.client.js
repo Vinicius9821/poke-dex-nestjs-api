@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AxiosBuildClient = void 0;
+const http_base_url_helper_1 = require("../helper/http-base-url.helper");
+const http_path_helper_1 = require("../helper/http-path.helper");
 const http_method_enum_1 = require("./../../../modules/axios/models/enum/http-method.enum");
 const axios_config_1 = require("./axios.config");
 class AxiosBuildClient {
@@ -58,7 +60,12 @@ class AxiosBuildClient {
     buildAxios() {
         this.checkBaseUrlIsNullOrEmpty();
         this.checkHttpMethodIsNullOrEmpty();
+        this.checkConfigRequest();
         return this.buildAxiosRequestConfig();
+    }
+    checkConfigRequest() {
+        this.baseUrl = http_base_url_helper_1.HttpBaseUrlHelper.removeSlashFromBaseUrl(this.baseUrl);
+        this.finalPath = this.baseUrl.concat(http_path_helper_1.HttpPathHelper.buildFinalPath(this.path));
     }
     checkBaseUrlIsNullOrEmpty() {
         if (!this.baseUrl) {
@@ -74,7 +81,7 @@ class AxiosBuildClient {
         if (this.isPost()) {
             this.setupJsonAsContentType();
         }
-        return axios_config_1.AxiosConfig.ofAxiosConfig(this.baseUrl, this.method, this.headers, this.params, this.payload, this.logRequest, this.logResponse);
+        return axios_config_1.AxiosSendRequestConfig.ofAxiosConfig(this.baseUrl, this.finalPath, this.method, this.headers, this.params, this.payload, this.logRequest, this.logResponse);
     }
     isPost() {
         return this.method === http_method_enum_1.HtppMethod.POST;

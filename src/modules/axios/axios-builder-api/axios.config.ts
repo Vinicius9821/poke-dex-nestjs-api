@@ -1,8 +1,9 @@
 import { AxiosRequestConfig } from 'axios';
 import { Method } from '../models/axios-config.model';
 
-export class AxiosConfig implements AxiosRequestConfig {
+export class AxiosSendRequestConfig implements AxiosRequestConfig {
   baseUrl: string;
+  url: string;
   method?: Method;
   headers?: any;
   params?: any;
@@ -11,6 +12,7 @@ export class AxiosConfig implements AxiosRequestConfig {
   logResponse?: boolean;
 
   constructor(
+    baseUrl: string,
     url: string,
     method: Method,
     headers: any,
@@ -19,7 +21,8 @@ export class AxiosConfig implements AxiosRequestConfig {
     logRequest: boolean,
     logResponse: boolean,
   ) {
-    this.baseUrl = url;
+    this.baseUrl = baseUrl;
+    this.url = url;
     this.method = method;
     this.headers = headers;
     this.params = params;
@@ -29,6 +32,7 @@ export class AxiosConfig implements AxiosRequestConfig {
   }
 
   public static ofAxiosConfig(
+    baseUrl,
     url,
     method,
     headers,
@@ -37,7 +41,8 @@ export class AxiosConfig implements AxiosRequestConfig {
     logRequest,
     logResponse,
   ) {
-    return new AxiosConfig(
+    return new AxiosSendRequestConfig(
+      baseUrl,
       url,
       method,
       headers,

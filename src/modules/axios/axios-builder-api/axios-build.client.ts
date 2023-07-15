@@ -1,5 +1,7 @@
+import { HttpBaseUrlHelper } from '../helper/http-base-url.helper';
+import { HttpPathHelper } from '../helper/http-path.helper';
 import { HtppMethod } from './../../../modules/axios/models/enum/http-method.enum';
-import { AxiosConfig } from './axios.config';
+import { AxiosSendRequestConfig } from './axios.config';
 
 export class AxiosBuildClient {
   private baseUrl: string;
@@ -8,6 +10,7 @@ export class AxiosBuildClient {
   private payload: any;
   private headers: any;
   private method: HtppMethod;
+  private finalPath: string;
   private logRequest: boolean;
   private logResponse: boolean;
   private buildApiReturn = false;
@@ -78,8 +81,16 @@ export class AxiosBuildClient {
   buildAxios() {
     this.checkBaseUrlIsNullOrEmpty();
     this.checkHttpMethodIsNullOrEmpty();
+    this.checkConfigRequest();
 
     return this.buildAxiosRequestConfig();
+  }
+
+  private checkConfigRequest(): void {
+    this.baseUrl = HttpBaseUrlHelper.removeSlashFromBaseUrl(this.baseUrl);
+    this.finalPath = this.baseUrl.concat(
+      HttpPathHelper.buildFinalPath(this.path),
+    );
   }
 
   private checkBaseUrlIsNullOrEmpty(): void {
@@ -94,13 +105,14 @@ export class AxiosBuildClient {
     }
   }
 
-  private buildAxiosRequestConfig(): AxiosConfig {
+  private buildAxiosRequestConfig(): AxiosSendRequestConfig {
     if (this.isPost()) {
       this.setupJsonAsContentType();
     }
 
-    return AxiosConfig.ofAxiosConfig(
+    return AxiosSendRequestConfig.ofAxiosConfig(
       this.baseUrl,
+      this.finalPath,
       this.method,
       this.headers,
       this.params,

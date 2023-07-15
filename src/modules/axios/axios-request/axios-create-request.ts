@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { AxiosConfig } from '../axios-builder-api/axios.config';
+import { AxiosSendRequestConfig } from '../axios-builder-api/axios.config';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { RequestConfig } from '../models/axios-request.config.model';
 import { AxiosException } from '../exception/axios-exception.model';

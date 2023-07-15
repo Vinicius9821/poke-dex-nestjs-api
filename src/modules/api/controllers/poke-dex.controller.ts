@@ -6,8 +6,15 @@ import { PokemonModel } from './../../../modules/uses-case/shared/models/pokemon
 export class PokeDexController {
   constructor(private readonly pokeDexService: PokeDexService) {}
 
+  @Get('hello')
+  getHelloWorld(): Promise<string> {
+    return this.pokeDexService.getHelloWorld();
+  }
+
   @Get('pokemon/:pokemon')
-  getHello(@Param('pokemon') pokemon: string): Promise<PokemonModel | null> {
+  getPokemonByName(
+    @Param('pokemon') pokemon: string,
+  ): Promise<PokemonModel | null> {
     return this.pokeDexService.getPokemonByNameFromPokeApi(pokemon);
   }
 }

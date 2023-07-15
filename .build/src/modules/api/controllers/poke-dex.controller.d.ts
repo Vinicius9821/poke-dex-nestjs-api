@@ -3,5 +3,6 @@ import { PokemonModel } from './../../../modules/uses-case/shared/models/pokemon
 export declare class PokeDexController {
     private readonly pokeDexService;
     constructor(pokeDexService: PokeDexService);
-    getHello(pokemon: string): Promise<PokemonModel | null>;
+    getHelloWorld(): Promise<string>;
+    getPokemonByName(pokemon: string): Promise<PokemonModel | null>;
 }

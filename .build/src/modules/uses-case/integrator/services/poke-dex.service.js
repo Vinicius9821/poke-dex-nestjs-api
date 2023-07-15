@@ -17,6 +17,9 @@ let PokeDexService = exports.PokeDexService = class PokeDexService {
         this.pokeDexApiIntegrator = pokeDexApiIntegrator;
         this.logger = new common_1.Logger();
     }
+    async getHelloWorld() {
+        return await 'Hello World!';
+    }
     async getPokemonByNameFromPokeApi(pokemon) {
         let pokemonModel;
         try {

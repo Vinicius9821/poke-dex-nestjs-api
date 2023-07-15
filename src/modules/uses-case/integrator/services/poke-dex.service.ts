@@ -8,6 +8,10 @@ export class PokeDexService {
 
   constructor(private readonly pokeDexApiIntegrator: PokeDexApiIntegrator) {}
 
+  async getHelloWorld(): Promise<string> {
+    return await 'Hello World!';
+  }
+
   async getPokemonByNameFromPokeApi(
     pokemon: string,
   ): Promise<PokemonModel | null> {

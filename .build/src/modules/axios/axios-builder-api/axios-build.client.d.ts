@@ -1,5 +1,5 @@
 import { HtppMethod } from './../../../modules/axios/models/enum/http-method.enum';
-import { AxiosConfig } from './axios.config';
+import { AxiosSendRequestConfig } from './axios.config';
 export declare class AxiosBuildClient {
     private baseUrl;
     private path;
@@ -7,6 +7,7 @@ export declare class AxiosBuildClient {
     private payload;
     private headers;
     private method;
+    private finalPath;
     private logRequest;
     private logResponse;
     private buildApiReturn;
@@ -22,7 +23,8 @@ export declare class AxiosBuildClient {
     withLogRequest(): AxiosBuildClient;
     withLogResponse(): AxiosBuildClient;
     buildReturn(): AxiosBuildClient;
-    buildAxios(): AxiosConfig;
+    buildAxios(): AxiosSendRequestConfig;
+    private checkConfigRequest;
     private checkBaseUrlIsNullOrEmpty;
     private checkHttpMethodIsNullOrEmpty;
     private buildAxiosRequestConfig;

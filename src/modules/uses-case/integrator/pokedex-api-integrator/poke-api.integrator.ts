@@ -12,6 +12,7 @@ export class PokeDexApiIntegrator {
   private readonly pokeDexApiBaseUrl = 'https://pokeapi.co/api/v2';
 
   async getPokemonByName(pokemon: string): Promise<PokemonModel> {
+    console.log(pokemon);
     const axios = new AxiosBuildClient()
       .withBaseUrl(this.pokeDexApiBaseUrl)
       .withPath(`/pokemon/${pokemon}`)
@@ -19,9 +20,12 @@ export class PokeDexApiIntegrator {
       .buildReturn()
       .buildAxios();
 
+    console.log(axios);
+
     const apiReturn = await this.axiosCreateRequest.makeRequest<PokemonModel>(
       axios,
     );
+    console.log(apiReturn);
 
     return AxiosGetResponse.returnOrError(apiReturn);
   }

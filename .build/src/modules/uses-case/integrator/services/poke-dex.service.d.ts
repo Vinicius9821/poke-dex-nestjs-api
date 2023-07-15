@@ -4,5 +4,6 @@ export declare class PokeDexService {
     private readonly pokeDexApiIntegrator;
     private readonly logger;
     constructor(pokeDexApiIntegrator: PokeDexApiIntegrator);
+    getHelloWorld(): Promise<string>;
     getPokemonByNameFromPokeApi(pokemon: string): Promise<PokemonModel | null>;
 }
